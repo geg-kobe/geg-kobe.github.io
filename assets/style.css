@@ -4,28 +4,30 @@
   型を直したときは、もう一方のサイトにも同じ直しを入れるか運営者に聞く。
 */
 
-/* ===== サイトの色（GEG KOBE） ===== */
+/* ===== サイトの色（GEG KOBE：港の紺＋ポートタワーの朱） ===== */
 :root {
-  --accent: #0f6b5c;        /* 見出し・ボタン */
-  --accent-strong: #0a4d42; /* ボタンを押したとき */
-  --accent-soft: #e3f1ed;   /* カードの背景 */
-  --bg: #fbfaf7;
-  --text: #1d1d1b;
-  --muted: #4f524f;
-  --line: #d9dcd6;
+  --accent: #1f3a5f;        /* 見出し・ボタン（港の紺） */
+  --accent-strong: #142842; /* ボタンを押したとき */
+  --accent-soft: #e6ecf4;   /* カードの背景 */
+  --decor: #c8442b;         /* 飾りの線だけに使う色（タワーの朱）。文字やボタンには使わない */
+  --bg: #f9fafc;
+  --text: #1b1d21;
+  --muted: #4b5058;
+  --line: #d6dbe3;
   --surface: #ffffff;
   --focus: #b35c00;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --accent: #6fd1bd;
-    --accent-strong: #9ae3d3;
-    --accent-soft: #15302b;
-    --bg: #121413;
-    --text: #f1f2ef;
-    --muted: #c3c7c2;
-    --line: #333833;
-    --surface: #1b1e1c;
+    --accent: #9cc3ea;
+    --accent-strong: #c3dbf3;
+    --accent-soft: #18243a;
+    --decor: #ff8a70;
+    --bg: #11141a;
+    --text: #eef1f6;
+    --muted: #c0c6cf;
+    --line: #2f3746;
+    --surface: #1a1f28;
     --focus: #ffb866;
   }
 }
@@ -95,6 +97,20 @@ a:hover { color: var(--accent-strong); }
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+/* アイコンの絵（assets/icon.png）の形に、サイトの色をぬる。ダークモードでも色が切りかわる */
+.brand-icon {
+  flex: none;
+  width: 3.25rem;
+  height: 3.25rem;
+  background: var(--accent);
+  -webkit-mask: url("icon.png") center / contain no-repeat;
+  mask: url("icon.png") center / contain no-repeat;
+}
 .brand-name {
   margin: 0;
   font-size: 1.75rem;
@@ -146,7 +162,7 @@ h1 { font-size: 1.5rem; }
 h2 {
   font-size: 1.3rem;
   padding-left: 0.75rem;
-  border-left: 6px solid var(--accent);
+  border-left: 6px solid var(--decor, var(--accent));
 }
 p { margin: 0 0 1rem; }
 
