@@ -1,0 +1,258 @@
+/*
+  コミュニティサイト共通の型（GEG KOBE / MELC HYOGO）
+  サイトごとに変えるのは、すぐ下の「サイトの色」だけ。
+  型を直したときは、もう一方のサイトにも同じ直しを入れるか運営者に聞く。
+*/
+
+/* ===== サイトの色（GEG KOBE） ===== */
+:root {
+  --accent: #0f6b5c;        /* 見出し・ボタン */
+  --accent-strong: #0a4d42; /* ボタンを押したとき */
+  --accent-soft: #e3f1ed;   /* カードの背景 */
+  --bg: #fbfaf7;
+  --text: #1d1d1b;
+  --muted: #4f524f;
+  --line: #d9dcd6;
+  --surface: #ffffff;
+  --focus: #b35c00;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent: #6fd1bd;
+    --accent-strong: #9ae3d3;
+    --accent-soft: #15302b;
+    --bg: #121413;
+    --text: #f1f2ef;
+    --muted: #c3c7c2;
+    --line: #333833;
+    --surface: #1b1e1c;
+    --focus: #ffb866;
+  }
+}
+
+/* ===== ここから下は2つのサイトで共通 ===== */
+* { box-sizing: border-box; }
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "BIZ UDPGothic", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Meiryo", system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  letter-spacing: 0.02em;
+}
+
+/* 言語の切りかえ：選んでいない言語をかくす */
+html[data-ui-lang="ja"] [data-lang="en"],
+html[data-ui-lang="en"] [data-lang="ja"] { display: none !important; }
+
+.wrap {
+  width: 100%;
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+a { color: var(--accent); text-underline-offset: 0.2em; }
+a:hover { color: var(--accent-strong); }
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  background: var(--surface);
+  color: var(--text);
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  z-index: 10;
+}
+.skip:focus { top: 1rem; }
+
+/* 1. いちばん上 */
+.site-header {
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.brand-name {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  color: var(--accent);
+}
+.brand-sub {
+  margin: 0.15rem 0 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.lang-switch {
+  display: inline-flex;
+  border: 2px solid var(--accent);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.lang-switch button {
+  font: inherit;
+  font-size: 0.95rem;
+  min-height: 44px;
+  padding: 0 1rem;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+}
+.lang-switch button[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+}
+
+/* 各セクション */
+.section {
+  padding-top: 2.25rem;
+  padding-bottom: 0.25rem;
+}
+h1, h2 {
+  margin: 0 0 0.75rem;
+  line-height: 1.4;
+  color: var(--text);
+}
+h1 { font-size: 1.5rem; }
+h2 {
+  font-size: 1.3rem;
+  padding-left: 0.75rem;
+  border-left: 6px solid var(--accent);
+}
+p { margin: 0 0 1rem; }
+
+.card {
+  background: var(--accent-soft);
+  border-radius: 14px;
+  padding: 1.25rem;
+}
+.card > :last-child { margin-bottom: 0; }
+
+/* 3. 次のイベント */
+.event-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  line-height: 1.5;
+}
+.event-meta {
+  margin: 0 0 1rem;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.25rem 1rem;
+}
+.event-meta dt { font-weight: 700; color: var(--muted); }
+.event-meta dd { margin: 0; }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid var(--accent);
+}
+.btn-primary { background: var(--accent); color: var(--bg); }
+.btn-primary:hover { background: var(--accent-strong); border-color: var(--accent-strong); color: var(--bg); }
+.btn-secondary { background: var(--surface); color: var(--accent); }
+.btn-secondary:hover { color: var(--accent-strong); border-color: var(--accent-strong); }
+
+.note {
+  font-size: 0.95rem;
+  color: var(--muted);
+  border-top: 1px dashed var(--line);
+  padding-top: 0.75rem;
+}
+
+/* 4. 参加のしかた */
+.steps {
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding: 0.6rem 0 0.6rem 3rem;
+  border-bottom: 1px solid var(--line);
+}
+.steps li:last-child { border-bottom: 0; }
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* 5. 運営者 */
+.organizer-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+.link-arrow::after { content: " →"; }
+
+/* 7. いちばん下 */
+.site-footer {
+  margin-top: 3rem;
+  border-top: 1px solid var(--line);
+  padding: 1.5rem 0 2rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.site-footer p { margin: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
